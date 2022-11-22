@@ -1,13 +1,13 @@
 ## Install
 
-Install python 3.x
+Install Python 3.X
 https://www.python.org/downloads/
 
 ### Windows
 
-```
-https://github.com/adzip-nyx/disk.git
+#### in Terminal
 
+```
 pip install eel
 
 python init.py
