@@ -38,13 +38,13 @@ async function render() {
 
         if (element[1] != "" && element[4] != '~\\files') {
             output.innerHTML += `
-            <div class="bar">
+            <li class="bar">
                 <button class="bar__file--btn" type="button" onclick="goBack('${element[1]}', '${element[2]}' ,'${element[3]}')">
                     <img class="bar__file--btn-pic" src="${element[3] == "folder" ? "/icons/folder.svg" : fileType}"/>
                 </button>
                 <p class="bar__file--title">${title}</p>
                 <p class="bar__file--size">${size}</p>
-            </div>
+            </li>
             `
         }
     })
