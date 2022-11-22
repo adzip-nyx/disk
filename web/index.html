@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head class="page">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="eel.js"></script>
+
+    <link rel="icon" href="icons/icon.png">
+    <title>ADZIP NYX — Disk</title>
+</head>
+<body class="page__body">
+    <div class="wrapper">
+        <main class="main">
+            <nav>
+                <div class="search__bar">
+                    <p class="search__bar--title">Поиск</p>
+                    <input class="search__bar--input" type="text" id="searchBar">
+                </div>
+            </nav>
+            <div class="workspace" id="output">
+
+            </div>
+        </main>
+        <aside class="sidebar">
+            <div class="logo">
+                <img class="logo__icon" src="icons/logo.png" alt="logo">
+                <h1 class="logo__title">Disk</h1>
+            </div>
+            <nav>
+                <ul class="tools">
+                    <li class="tools__item">
+                        <img class="tools__item--icon" src="icons/home.svg" alt="#">
+                        <p class="tools__item--title">Мой диск</p>
+                        <button class="tools__item--btn"></button>
+                    </li>
+                    <li class="tools__item">
+                        <img class="tools__item--icon" src="icons/recent.svg" alt="#">
+                        <p class="tools__item--title">Недавние</p>
+                        <button class="tools__item--btn"></button>
+                    </li>
+                    <li class="tools__item">
+                        <img class="tools__item--icon" src="icons/star.svg" alt="#">
+                        <p class="tools__item--title">Отмечены</p>
+                        <button class="tools__item--btn"></button>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
