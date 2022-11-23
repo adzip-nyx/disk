@@ -1,1 +1,2 @@
-web/files/*
+/web/files/*
+!/web/files/!preview/
