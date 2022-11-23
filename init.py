@@ -27,7 +27,7 @@ def get_input(input):
                 user_folder = user_folder[:-(len("\\" + res[0][1:]))]
                 print(len("\\" + res[0][1:]))
                 res[0] = ''
-        print(user_folder, 11)
+        print(user_folder)
         for dir, folder, files in os.walk(user_folder):
             print(dir, user_folder)
             if dir == user_folder:
