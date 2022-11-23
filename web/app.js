@@ -1,5 +1,5 @@
 render()
-
+// привет
 searchBar = document.getElementById('searchBar')
 
 let time
