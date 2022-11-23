@@ -4,11 +4,10 @@ res, l = ["",""], ""
 user_url = "web\\" + user
 user_folder = user_url
 types_photo = [".png", ".jpg", ".jpeg",".bmp", ".ico", ".webp"]
-types_document = [".doc",".xls",".od",".pptx", ".ptx",".txt"]
 
 @eel.expose
 def get_input(input):
-    global res, user_url, types_photo, types_document, user_folder, l
+    global res, user_url, types_photo, user_folder, l
     data = []
     res = input
     print(res)
@@ -45,8 +44,6 @@ def get_input(input):
                         file_type = "file"
                         if files[i].rfind(types_photo[g]) > -1:
                             file_type = "image"
-                        if files[i].rfind(types_document[g]) > -1:
-                            file_type = "document"
                     file_url = (dir + "/" + files[i]).replace("\\", "/")
                     data += [[
                             [file_url[4:]],
@@ -68,8 +65,6 @@ def get_input(input):
                         file_type = "file"
                         if files[i].rfind(types_photo[g]) > -1:
                             file_type = "image"
-                        if files[i].rfind(types_document[g]) > -1:
-                            file_type = "document"
                     file_url = (dir + "/" + files[i]).replace("\\", "/")
                     data += [[
                         [file_url[4:]],
@@ -82,5 +77,3 @@ def get_input(input):
 
 eel.init("web")
 eel.start("index.html", mode= webbrowser.get('windows-default'))
-
-# что то 
