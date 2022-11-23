@@ -55,7 +55,7 @@ def get_input(input):
                             [file_type],
                             [""]
                         ]]
-            print(dir)
+            print(dir, 1)
             data = [[[l[1:]], [l[1:]], [dir.replace("\\", "/")], ["b_folder"], ["~" + dir[3:]]]] + data
             return data
     else:
