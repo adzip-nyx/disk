@@ -82,3 +82,5 @@ def get_input(input):
 
 eel.init("web")
 eel.start("index.html", mode= webbrowser.get('windows-default'))
+
+# что то 
