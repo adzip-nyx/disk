@@ -59,7 +59,7 @@ def get_input(input):
                             [""]
                         ]]
             print(data)
-            data = [[user],[[l[1:]], [l[1:]], [dir.replace("\\", "/")], ["b_folder"], ["~" + dir[3:]]]] + data
+            data = [[[l[1:]], [l[1:]], [dir.replace("\\", "/")], ["b_folder"], ["~" + dir[3:]], [user]]] + data
             return data
     else:
         for dir, folder, files in os.walk(user_url):
