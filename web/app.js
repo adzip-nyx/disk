@@ -57,7 +57,7 @@ function goBack(name, folder, type) {
     type == 'b_folder' ? go(nameBack, type) : go(nameCur, type)
 }
 
-async function go(name, type) {
+async function go(name, type, tool) {
     name == '' ? name = '\\' : name
     const out = searchBar.value
     let outName = ''
@@ -69,12 +69,10 @@ async function go(name, type) {
     const list = [
         outName,
         out,
-        ''
+        tool
     ]
 
     const res = await eel.get_input(list)()
-
-    res = await eel.get_input(list)()
 
     render()
 }
@@ -86,7 +84,7 @@ async function toolChange(tool) {
         tool
     ]
     const resTool = await eel.get_input(listTool)()
-    render
+    render()
 }
 
 function formatSizeUnits(bytes){
