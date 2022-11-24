@@ -3,7 +3,6 @@ user = open("web\\.username", "r+")
 user = user.read()
 res, l = ["",""], ""
 user_url = "web\\users\\" + user + "\\files"
-print(user_url, user_url)
 user_folder = user_url
 types_photo = [".png", ".jpg", ".jpeg",".bmp", ".ico", ".webp"]
 
@@ -15,24 +14,26 @@ def get_input(input):
     if res == "":
         res = ["", "", None]
     Search = res[1]
-    """if res[2] != None:
+    if res[2] != None:
         if res[2] == "disk":
             user_folder = user_url
         elif res[2] == "far":
             print(1)
-        res[2] = None"""
-    if res[0] == "" or res[1] == "":
+        res = ["", "", None]
+    if res[1] == "":
         if res[0] != "":
+            print(res)
             l = res[0]
             if l[:1] == "+":
                 user_folder += "\\" + l[1:]
                 res[0] = ''
             if l[:1] == "-":
                 user_folder = user_folder[:-(len("\\" + res[0][1:]))]
-                print(len("\\" + res[0][1:]))
                 res[0] = ''
+            print(1)
+        print(user_folder)
         for dir, folder, files in os.walk(user_folder):
-            print(dir, user_folder)
+            print(dir, 1111, user_folder)
             if dir == user_folder:
                 for a in range(len(folder)):
                     file_url = (dir + "/" + folder[a]).replace("\\", "/")
@@ -56,6 +57,7 @@ def get_input(input):
                             [file_type],
                             [""]
                         ]]
+            print(data)
             data = [[[l[1:]], [l[1:]], [dir.replace("\\", "/")], ["b_folder"], ["~" + dir[16 + len(user):]], [user]]] + data
             return data
     else:
