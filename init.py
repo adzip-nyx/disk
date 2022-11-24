@@ -17,23 +17,22 @@ def get_input(input):
     if res[2] != None:
         if res[2] == "disk":
             user_folder = user_url
-        elif res[2] == "far":
-            print(1)
+        elif res[2] == "fav":
+            fav = open(user_url[:-5] + "fav", "r+")
+            fav_file = fav.read()
+            print(fav_file[:(fav_file.find("||"))], fav_file[(fav_file.find("||")+2):])
         res = ["", "", None]
     if res[1] == "":
         if res[0] != "":
             print(res)
             l = res[0]
             if l[:1] == "+":
-                user_folder += "\\" + l[1:]
+                user_folder += "\\" + l[1:] 
                 res[0] = ''
             if l[:1] == "-":
                 user_folder = user_folder[:-(len("\\" + res[0][1:]))]
                 res[0] = ''
-            print(1)
-        print(user_folder)
         for dir, folder, files in os.walk(user_folder):
-            print(dir, 1111, user_folder)
             if dir == user_folder:
                 for a in range(len(folder)):
                     file_url = (dir + "/" + folder[a]).replace("\\", "/")
@@ -57,7 +56,6 @@ def get_input(input):
                             [file_type],
                             [""]
                         ]]
-            print(data)
             data = [[[l[1:]], [l[1:]], [dir.replace("\\", "/")], ["b_folder"], ["~" + dir[16 + len(user):]], [user]]] + data
             return data
     else:
