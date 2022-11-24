@@ -1,5 +1,5 @@
 render()
-"сделай мне обозначение если fav или home активируются в переменную которую ты мне присылаешь!(3-е значение)"
+
 searchBar = document.getElementById('searchBar')
 
 let time
@@ -22,7 +22,6 @@ async function render() {
         let fileType = "0"
 
         element[3] == "file" ? fileType = "/icons/file.svg" : ''
-        element[3] == "document" ? fileType = "/icons/file.svg" : ''
         element[3] == "image" ? fileType = element[0] : ''
         element[3] == "b_folder" ? fileType = "/icons/back.svg" : ''
 
@@ -57,7 +56,7 @@ function goBack(name, folder, type) {
     type == 'b_folder' ? go(nameBack, type) : go(nameCur, type)
 }
 
-async function go(name, type) {
+async function go(name, type, tool) {
     name == '' ? name = '\\' : name
     const out = searchBar.value
     let outName = ''
@@ -68,12 +67,23 @@ async function go(name, type) {
 
     const list = [
         outName,
-        out
+        out,
+        tool
     ]
 
     const res = await eel.get_input(list)()
 
     render()
+}
+
+async function toolChange(tool) {
+    const listTool = [
+        '',
+        '',
+        tool
+    ]
+    const resTool = await eel.get_input(listTool)()
+    render
 }
 
 function formatSizeUnits(bytes){
