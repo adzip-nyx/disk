@@ -1,3 +1,2 @@
-/web/files/*
-!/web/files/!preview/
-/web/Timzzz1
+/web/users/*
+!/web/users/preview
