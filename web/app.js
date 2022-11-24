@@ -1,5 +1,5 @@
 render()
-
+"сделай мне обозначение если fav или home активируются в переменную которую ты мне присылаешь!"
 searchBar = document.getElementById('searchBar')
 
 let time
