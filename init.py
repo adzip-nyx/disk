@@ -10,12 +10,15 @@ def get_input(input):
     global res, user_url, types_photo, user_folder, l
     data = []
     res = input
+    print(res)
+    print(user_folder, user_url)
     if res == "":
         res = ["", "", ""]
     Search = res[1]
     if res[2] != "":
         if res[2] == "home":
             user_folder = user_url
+            print(1)
         elif res[2] == "far":
             print(1)
     elif res[0] == "" or res[1] == "":
