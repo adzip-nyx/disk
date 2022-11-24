@@ -1,5 +1,5 @@
 import eel, os, os.path, webbrowser
-user = open("web\\users\\.username", "r+")
+user = open("web\\.username", "r+")
 user = user.read()
 res, l = ["",""], ""
 user_url = "web\\users\\" + user + "\\files"
