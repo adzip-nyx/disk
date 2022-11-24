@@ -35,7 +35,7 @@ async function render() {
 
         element[3] == "b_folder" ? size = "Вернутся" : size
 
-        if (element[1] != "" && element[4] != '~\\' + element[5]) {
+        if (element[1] != "" && element[4] != '~') {
             output.innerHTML += `
             <li class="bar">
                 <button class="bar__file--btn" type="button" onclick="goBack('${element[1]}', '${element[2]}' ,'${element[3]}')">

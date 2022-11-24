@@ -1,7 +1,9 @@
-import eel, os, os.path, webbrowser, re
-user = "Timzzz1"
+import eel, os, os.path, webbrowser
+user = open("web\\users\\name_user_beta.txt", "r+")
+user = user.read()
 res, l = ["",""], ""
-user_url = "web\\" + user + "\\files"
+user_url = "web\\users\\" + user + "\\files"
+print(user_url)
 user_folder = user_url
 types_photo = [".png", ".jpg", ".jpeg",".bmp", ".ico", ".webp"]
 
@@ -59,7 +61,7 @@ def get_input(input):
                             [""]
                         ]]
             print(data)
-            data = [[[l[1:]], [l[1:]], [dir.replace("\\", "/")], ["b_folder"], ["~" + dir[3:]], [user]]] + data
+            data = [[[l[1:]], [l[1:]], [dir.replace("\\", "/")], ["b_folder"], ["~" + dir[16 + len(user):]], [user]]] + data
             return data
     else:
         for dir, folder, files in os.walk(user_url):
