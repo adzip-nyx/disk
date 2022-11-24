@@ -10,25 +10,20 @@ def get_input(input):
     global res, user_url, types_photo, user_folder, l
     data = []
     res = input
-    print(res)
     if res == "":
         res = ["", ""]
     Search = res[1]
-    print(res)
     if res[0] == "" or res[1] == "":
         if res[0] != "":
             l = res[0]
             if l[:1] == "+":
                 user_folder += "\\" + l[1:]
-                print(len("\\" + res[0][1:]))
                 res[0] = ''
             if l[:1] == "-":
                 user_folder = user_folder[:-(len("\\" + res[0][1:]))]
                 print(len("\\" + res[0][1:]))
                 res[0] = ''
-        print(user_folder)
         for dir, folder, files in os.walk(user_folder):
-            print(dir, user_folder)
             if dir == user_folder:
                 for a in range(len(folder)):
                     file_url = (dir + "/" + folder[a]).replace("\\", "/")
@@ -52,7 +47,6 @@ def get_input(input):
                             [file_type],
                             [""]
                         ]]
-            print(dir, 1)
             data = [[[l[1:]], [l[1:]], [dir.replace("\\", "/")], ["b_folder"], ["~" + dir[3:]]]] + data
             return data
     else:
