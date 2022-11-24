@@ -3,7 +3,7 @@ user = open("web\\.username", "r+")
 user = user.read()
 res, l = ["",""], ""
 user_url = "web\\users\\" + user + "\\files"
-print(user_url)
+print(user_url, user_url)
 user_folder = user_url
 types_photo = [".png", ".jpg", ".jpeg",".bmp", ".ico", ".webp"]
 
@@ -12,8 +12,6 @@ def get_input(input):
     global res, user_url, types_photo, user_folder, l, user
     data = []
     res = input
-    print(res)
-    print(user_folder, user_url)
     if res == "":
         res = ["", "", None]
     Search = res[1]
@@ -24,7 +22,6 @@ def get_input(input):
             print(1)
         res[2] = None"""
     if res[0] == "" or res[1] == "":
-        print(user_folder, user_url)
         if res[0] != "":
             l = res[0]
             if l[:1] == "+":
@@ -34,7 +31,6 @@ def get_input(input):
                 user_folder = user_folder[:-(len("\\" + res[0][1:]))]
                 print(len("\\" + res[0][1:]))
                 res[0] = ''
-        print(user_folder)
         for dir, folder, files in os.walk(user_folder):
             print(dir, user_folder)
             if dir == user_folder:
@@ -60,7 +56,6 @@ def get_input(input):
                             [file_type],
                             [""]
                         ]]
-            print(data)
             data = [[[l[1:]], [l[1:]], [dir.replace("\\", "/")], ["b_folder"], ["~" + dir[16 + len(user):]], [user]]] + data
             return data
     else:
