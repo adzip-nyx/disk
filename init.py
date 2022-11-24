@@ -7,21 +7,22 @@ types_photo = [".png", ".jpg", ".jpeg",".bmp", ".ico", ".webp"]
 
 @eel.expose
 def get_input(input):
-    global res, user_url, types_photo, user_folder, l
+    global res, user_url, types_photo, user_folder, l, user
     data = []
     res = input
     print(res)
     print(user_folder, user_url)
     if res == "":
-        res = ["", "", ""]
+        res = ["", "", None]
     Search = res[1]
-    if res[2] != "":
-        if res[2] == "home":
+    """if res[2] != None:
+        if res[2] == "disk":
             user_folder = user_url
-            print(1)
         elif res[2] == "far":
             print(1)
-    elif res[0] == "" or res[1] == "":
+        res[2] = None"""
+    if res[0] == "" or res[1] == "":
+        print(user_folder, user_url)
         if res[0] != "":
             l = res[0]
             if l[:1] == "+":
@@ -31,7 +32,9 @@ def get_input(input):
                 user_folder = user_folder[:-(len("\\" + res[0][1:]))]
                 print(len("\\" + res[0][1:]))
                 res[0] = ''
+        print(user_folder)
         for dir, folder, files in os.walk(user_folder):
+            print(dir, user_folder)
             if dir == user_folder:
                 for a in range(len(folder)):
                     file_url = (dir + "/" + folder[a]).replace("\\", "/")
@@ -55,7 +58,8 @@ def get_input(input):
                             [file_type],
                             [""]
                         ]]
-            data = [[[l[1:]], [l[1:]], [dir.replace("\\", "/")], ["b_folder"], ["~" + dir[3:]]]] + data
+            print(data)
+            data = [[user],[[l[1:]], [l[1:]], [dir.replace("\\", "/")], ["b_folder"], ["~" + dir[3:]]]] + data
             return data
     else:
         for dir, folder, files in os.walk(user_url):
