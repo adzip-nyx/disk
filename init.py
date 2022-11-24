@@ -1,7 +1,7 @@
 import eel, os, os.path, webbrowser, re
-user = "files"
+user = "Timzzz1"
 res, l = ["",""], ""
-user_url = "web\\" + user
+user_url = "web\\" + user + "\\files"
 user_folder = user_url
 types_photo = [".png", ".jpg", ".jpeg",".bmp", ".ico", ".webp"]
 
@@ -11,9 +11,14 @@ def get_input(input):
     data = []
     res = input
     if res == "":
-        res = ["", ""]
+        res = ["", "", ""]
     Search = res[1]
-    if res[0] == "" or res[1] == "":
+    if res[2] != "":
+        if res[2] == "home":
+            user_folder = user_url
+        elif res[2] == "far":
+            print(1)
+    elif res[0] == "" or res[1] == "":
         if res[0] != "":
             l = res[0]
             if l[:1] == "+":
