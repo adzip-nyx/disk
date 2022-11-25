@@ -12,7 +12,7 @@ def get_username():
     global name
     for dir,folder,files in os.walk("web\\users"):
         if dir == "web\\users":
-            name += [user]+ folder
+            name += [[user]] + [folder]
         print(name)
     return name
 
