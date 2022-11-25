@@ -1,4 +1,2 @@
 /web/users/*/files/*
 !/web/users/*/files/!preview
-
-/web/.username

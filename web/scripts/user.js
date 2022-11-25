@@ -27,7 +27,7 @@ async function users() {
             <p class="user__pic-name">${userName}</p>
             <img class="user__pic-img" src="${userPic}" alt="${userName}">
         </button>
-        <ul class="menu menu--hidden1" id="userMenu">${menu}</ul>
+        <ul class="menu menu--hidden" id="userMenu">${menu}</ul>
     `
 }
 
@@ -37,5 +37,13 @@ function userMenuToggle() {
 }
 
 async function gotoUser(user) {
-    user = await eel.get_input()()
+
+    const list = [
+        '',
+        '',
+        '',
+        user
+    ]
+
+    res = await eel.get_input(list)()
 }

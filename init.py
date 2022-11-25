@@ -12,7 +12,7 @@ def get_username():
 
 @eel.expose
 def get_input(input):
-    global res, user_url, types_photo, user_folder, l, user
+    global res, user_url, types_photo, user_folder, l
     data = []
     res = input
     if res == "":

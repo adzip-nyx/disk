@@ -27,7 +27,7 @@ async function render() {
 
         let title = ''
 
-        element[3] == 'b_folder' ? title = element[4] : title = element[1]
+        element[3] == 'b_folder' ? title = ' | ' + element[4] + ' | ' : title = element[1]
 
         let size = ''
 
