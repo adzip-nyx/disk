@@ -5,6 +5,19 @@ res, l = ["",""], ""
 user_url = "web\\users\\" + user + "\\files"
 user_folder = user_url
 types_photo = [".png", ".jpg", ".jpeg",".bmp", ".ico", ".webp"]
+types_video = [".mkv", ".mp4", ".mov",".avi", ".webm"]
+types_audio = [".mp3", ".aac", ".wav", ".flac", "alac", "dsd", "ogg", "flac"]
+
+"""
+
+Добавить типы видео, и типы аудио
+
+И исправить баг с выводом, определяется только последний элемент
+
+Баг не работает поиск
+
+"""
+
 
 @eel.expose
 def get_username():
