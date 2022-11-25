@@ -16,7 +16,13 @@ async function render() {
     output.innerHTML = ''
     const searchInput = searchBar.value
 
-    const res = await eel.get_input(searchInput)()
+    const list = [
+        '',
+        searchInput,
+        ''
+    ]
+
+    const res = await eel.get_input(list)()
 
     res.forEach(element => {
         let title, size, fileType = ''
