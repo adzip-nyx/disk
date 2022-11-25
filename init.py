@@ -6,16 +6,6 @@ user_url = "web\\users\\" + user + "\\files"
 user_folder = user_url
 types = [[".png", ".jpg", ".jpeg",".bmp", ".ico", ".webp"],[".mkv", ".mp4", ".mov",".avi", ".webm"], [".mp3", ".aac", ".wav", ".flac", "alac", "dsd", "ogg", "flac"]]
 
-"""
-изображение видео аудио
-Добавить типы видео, и типы аудио
-
-И исправить баг с выводом, определяется только последний элемент
-
-Баг не работает поиск
-
-"""
-
 
 @eel.expose
 def get_username():
@@ -79,8 +69,6 @@ def get_input(input):
                             break
                     if file_type == "":
                         file_type = "file"
-                    print(file_type)
-                    """исправь на нужные тебе значения"""
                     file_url = (dir + "/" + files[i]).replace("\\", "/")
                     data += [[
                             [file_url[4:]],
