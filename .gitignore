@@ -1,2 +1,3 @@
 /web/users/*/files/*
 !/web/users/*/files/!preview
+/web/users

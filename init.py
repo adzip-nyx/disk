@@ -29,7 +29,7 @@ def get_input(input):
         if res[2] == "disk":
             user_folder = user_url
         elif res[2] == "fav":
-            fav = open(user_url[:-5] + "fav", "r+")
+            fav = open(user_url[:-5] + ".fav", "r+")
             fav_file = fav.read()
             print(fav_file[:(fav_file.find("||"))], fav_file[(fav_file.find("||")+2):])
         res = ["", "", None]
