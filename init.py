@@ -5,15 +5,15 @@ res, l = ["","", None], ""
 user_url = "web\\users\\" + user + "\\files"
 user_folder = user_url
 types = [[".png", ".jpg", ".jpeg",".bmp", ".ico", ".webp"],[".mkv", ".mp4", ".mov",".avi", ".webm"], [".mp3", ".aac", ".wav", ".flac", "alac", "dsd", "ogg", "flac"]]
-
+name = []
 
 @eel.expose
 def get_username():
     global name
     for dir,folder,files in os.walk("web\\users"):
         if dir == "web\\users":
-            user = [folder] + name
-    return user
+            name += folder + [user]
+    return name
 
 @eel.expose
 def get_input(input):
