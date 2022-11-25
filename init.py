@@ -23,11 +23,15 @@ def get_username():
 
 @eel.expose
 def get_input(input):
-    global res, user_url, types_photo, user_folder, l
+    global res, user_url, types, user_folder, l
     data = []
     res = input
     if res == "":
-        res = ["", "", None]
+        res = ["", "", None, ""]
+    print(res)
+    for dir,folder,files in os.walk("web\\users"):
+        if dir == "web\\users":
+            print(folder)
     Search = res[1]
     if res[2] != None:
         if res[2] == "disk":
@@ -82,10 +86,12 @@ def get_input(input):
                 document = files[i].lower()
                 c = document.find(Search)
                 if c != -1:
-                    for g in range(6):
-                        file_type = "file"
-                        if files[i].rfind(types_photo[g]) > -1:
-                            file_type = "image"
+                    for g in types[0]:
+                        file_type = "image"
+                    for g in types[1]:
+                        file_type = "video"
+                    for g in types[2]:
+                        file_type = "audio"
                     file_url = (dir + "/" + files[i]).replace("\\", "/")
                     data += [[
                         [file_url[4:]],
