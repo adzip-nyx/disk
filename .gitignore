@@ -1,3 +1,4 @@
-/web/users/*
-!/web/users/preview
+/web/users/*/files/*
+!/web/users/*/files/!preview
+
 /web/.username

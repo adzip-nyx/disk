@@ -47,7 +47,6 @@ async function render() {
             `
         }
     })
-    console.log(res);
 }
 
 function goBack(name, folder, type) {

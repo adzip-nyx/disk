@@ -7,6 +7,10 @@ user_folder = user_url
 types_photo = [".png", ".jpg", ".jpeg",".bmp", ".ico", ".webp"]
 
 @eel.expose
+def get_username():
+    return user
+
+@eel.expose
 def get_input(input):
     global res, user_url, types_photo, user_folder, l, user
     data = []
@@ -27,7 +31,7 @@ def get_input(input):
             print(res)
             l = res[0]
             if l[:1] == "+":
-                user_folder += "\\" + l[1:] 
+                user_folder += "\\" + l[1:]
                 res[0] = ''
             if l[:1] == "-":
                 user_folder = user_folder[:-(len("\\" + res[0][1:]))]
