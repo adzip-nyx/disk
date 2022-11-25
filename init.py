@@ -12,7 +12,8 @@ def get_username():
     global name
     for dir,folder,files in os.walk("web\\users"):
         if dir == "web\\users":
-            name += folder + [user]
+            name += [folder] + [user]
+        print(name)
     return name
 
 @eel.expose
