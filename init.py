@@ -9,6 +9,10 @@ types = [[".png", ".jpg", ".jpeg",".bmp", ".ico", ".webp"],[".mkv", ".mp4", ".mo
 
 @eel.expose
 def get_username():
+    global name
+    for dir,folder,files in os.walk("web\\users"):
+        if dir == "web\\users":
+            user = [folder] + name
     return user
 
 @eel.expose
@@ -19,9 +23,6 @@ def get_input(input):
     if res == "":
         res = ["", "", None]
     print(res)
-    for dir,folder,files in os.walk("web\\users"):
-        if dir == "web\\users":
-            print(folder)
     Search = res[1]
     if res[2] != None:
         if res[2] == "disk":
@@ -31,7 +32,6 @@ def get_input(input):
             fav_file = fav.read()
             print(fav_file[:(fav_file.find("||"))], fav_file[(fav_file.find("||")+2):])
         res = ["", "", None]
-    print(Search)
     if Search == "":
         print(123)
         if res[0] != "":
@@ -100,7 +100,6 @@ def get_input(input):
                             break
                     if file_type == "":
                         file_type = "file"
-                    print(file_type)
                     file_url = (dir + "/" + files[i]).replace("\\", "/")
                     data += [[
                         [file_url[4:]],
@@ -109,7 +108,6 @@ def get_input(input):
                         [file_type],
                         [""]
                     ]]
-        print(data)
         Search = ""
         return data
 
