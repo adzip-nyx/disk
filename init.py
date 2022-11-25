@@ -1,7 +1,7 @@
 import eel, os, os.path, webbrowser
 user = open("web\\.username", "r+")
 user = user.read()
-res, l = ["",""], ""
+res, l = ["","", None], ""
 user_url = "web\\users\\" + user + "\\files"
 user_folder = user_url
 types = [[".png", ".jpg", ".jpeg",".bmp", ".ico", ".webp"],[".mkv", ".mp4", ".mov",".avi", ".webm"], [".mp3", ".aac", ".wav", ".flac", "alac", "dsd", "ogg", "flac"]]
@@ -27,7 +27,7 @@ def get_input(input):
     data = []
     res = input
     if res == "":
-        res = ["", "", None, ""]
+        res = ["", "", None]
     print(res)
     for dir,folder,files in os.walk("web\\users"):
         if dir == "web\\users":
@@ -41,9 +41,10 @@ def get_input(input):
             fav_file = fav.read()
             print(fav_file[:(fav_file.find("||"))], fav_file[(fav_file.find("||")+2):])
         res = ["", "", None]
-    if res[1] == "":
+    print(Search)
+    if Search == "":
+        print(123)
         if res[0] != "":
-            print(res)
             l = res[0]
             if l[:1] == "+":
                 user_folder += "\\" + l[1:]
@@ -63,12 +64,22 @@ def get_input(input):
                             [""]
                         ]]
                 for i in range(len(files)):
+                    file_type = ""
                     for g in types[0]:
-                        file_type = "image"
+                        if files[i][files[i].rfind("."):] == g:
+                            file_type = "image"
+                            break
                     for g in types[1]:
-                        file_type = "video"
+                        if files[i][files[i].rfind("."):] == g:
+                            file_type = "video"
+                            break
                     for g in types[2]:
-                        file_type = "audio"
+                        if files[i][files[i].rfind("."):] == g:
+                            file_type = "audio"
+                            break
+                    if file_type == "":
+                        file_type = "file"
+                    print(file_type)
                     """исправь на нужные тебе значения"""
                     file_url = (dir + "/" + files[i]).replace("\\", "/")
                     data += [[
@@ -83,15 +94,25 @@ def get_input(input):
     else:
         for dir, folder, files in os.walk(user_url):
             for i in range (len(files)):
+                file_type = ""
                 document = files[i].lower()
                 c = document.find(Search)
                 if c != -1:
                     for g in types[0]:
-                        file_type = "image"
+                        if files[i][files[i].rfind("."):] == g:
+                            file_type = "image"
+                            break
                     for g in types[1]:
-                        file_type = "video"
+                        if files[i][files[i].rfind("."):] == g:
+                            file_type = "video"
+                            break
                     for g in types[2]:
-                        file_type = "audio"
+                        if files[i][files[i].rfind("."):] == g:
+                            file_type = "audio"
+                            break
+                    if file_type == "":
+                        file_type = "file"
+                    print(file_type)
                     file_url = (dir + "/" + files[i]).replace("\\", "/")
                     data += [[
                         [file_url[4:]],
@@ -100,6 +121,8 @@ def get_input(input):
                         [file_type],
                         [""]
                     ]]
+        print(data)
+        Search = ""
         return data
 
 eel.init("web")
