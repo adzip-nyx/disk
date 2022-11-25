@@ -19,17 +19,13 @@ async function render() {
     const res = await eel.get_input(searchInput)()
 
     res.forEach(element => {
-        let fileType = "0"
+        let title, size, fileType = ''
 
         element[3] == "file" ? fileType = "/icons/file.svg" : ''
         element[3] == "image" ? fileType = element[0] : ''
         element[3] == "b_folder" ? fileType = "/icons/back.svg" : ''
 
-        let title = ''
-
-        element[3] == 'b_folder' ? title = ' | ' + element[4] + ' | ' : title = element[1]
-
-        let size = ''
+        element[3] == 'b_folder' ? title = element[4] : title = element[1]
 
         size = element[3] == "folder" ? element[2] + " элемент-а(ов)" : formatSizeUnits(element[2])
 
@@ -77,13 +73,7 @@ async function go(name, type, tool) {
 }
 
 async function toolChange(tool) {
-    const listTool = [
-        '',
-        '',
-        tool
-    ]
-    const resTool = await eel.get_input(listTool)()
-    render()
+    go('', '', tool)
 }
 
 function formatSizeUnits(bytes){
