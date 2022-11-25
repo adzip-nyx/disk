@@ -1,16 +1,15 @@
 users()
 
-userList = [ "Solin", "Timzzz1" ]
-
 async function users() {
     const userName = await eel.get_username()()
 
-    const userPic = '/users/' + userName + '/.userpic'
+    console.log(userName);
+
+    const userPic = '/users/' + userName[1] + '/.userpic'
 
     let menu = ''
 
-    userList.forEach(element => {
-        if (element != userName) {
+    userList[0].forEach(element => {
             menu += `
             <li class="menu__item">
                 <button class="menu__item--user" onclick="gotoUser(${element})">
@@ -19,13 +18,12 @@ async function users() {
                 </button>
             </li>
         `
-        }
     })
 
     userChange.innerHTML = `
         <button class="user__pic" onclick="userMenuToggle()">
-            <p class="user__pic-name">${userName}</p>
-            <img class="user__pic-img" src="${userPic}" alt="${userName}">
+            <p class="user__pic-name">${userName[1]}</p>
+            <img class="user__pic-img" src="${userPic}" alt="${userName[1]}">
         </button>
         <ul class="menu menu--hidden" id="userMenu">${menu}</ul>
     `
