@@ -4,12 +4,10 @@ user = user.read()
 res, l = ["",""], ""
 user_url = "web\\users\\" + user + "\\files"
 user_folder = user_url
-types_photo = [".png", ".jpg", ".jpeg",".bmp", ".ico", ".webp"]
-types_video = [".mkv", ".mp4", ".mov",".avi", ".webm"]
-types_audio = [".mp3", ".aac", ".wav", ".flac", "alac", "dsd", "ogg", "flac"]
+types = [[".png", ".jpg", ".jpeg",".bmp", ".ico", ".webp"],[".mkv", ".mp4", ".mov",".avi", ".webm"], [".mp3", ".aac", ".wav", ".flac", "alac", "dsd", "ogg", "flac"]]
 
 """
-
+изображение видео аудио
 Добавить типы видео, и типы аудио
 
 И исправить баг с выводом, определяется только последний элемент
@@ -61,10 +59,13 @@ def get_input(input):
                             [""]
                         ]]
                 for i in range(len(files)):
-                    for g in range(6):
-                        file_type = "file"
-                        if files[i].rfind(types_photo[g]) > -1:
-                            file_type = "image"
+                    for g in types[0]:
+                        file_type = "image"
+                    for g in types[1]:
+                        file_type = "video"
+                    for g in types[2]:
+                        file_type = "audio"
+                    """исправь на нужные тебе значения"""
                     file_url = (dir + "/" + files[i]).replace("\\", "/")
                     data += [[
                             [file_url[4:]],
