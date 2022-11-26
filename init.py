@@ -5,7 +5,12 @@ res, l = ["","", None], ""
 user_url = "web\\users\\" + user + "\\files"
 user_folder = user_url
 types = [[".png", ".jpg", ".jpeg",".bmp", ".ico", ".webp"],[".mkv", ".mp4", ".mov",".avi", ".webm"], [".mp3", ".aac", ".wav", ".flac", "alac", "dsd", "ogg", "flac"]]
-name, data, back = [], [], ""
+name, data, back, usize= [], [], "", 0
+
+for dir, folder, files in os.walk(user_url):
+    for d in range(len(files)):
+        usize += os.path.getsize(dir + "\\" + files[d])
+        print(usize)
 
 @eel.expose
 def get_username():
