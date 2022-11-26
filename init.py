@@ -19,13 +19,18 @@ def get_username():
 @eel.expose
 def get_input(input):
     global res, user_url, types, user_folder, l, data, back
-    if data == back:
+    res = input
+    if res == "": 
+        res = ["", "", None]
+    print(data, "/n", back, res[2])
+    print(111)
+    print(res[2])
+    if data == back and res[2] == "1":
+        print(12222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222)
+        res = ["", "", None]
         return data
     else:
         data = []
-    res = input
-    if res == "":
-        res = ["", "", None]
     Search = res[1]
     if res[2] != None:
         if res[2] == "disk":
@@ -59,10 +64,12 @@ def get_input(input):
                                 [""]
                             ]]
             back = data
-            print(data)
+            print(back, 1222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222)
+            print(data, "send fav ")
+            print(res)
+            res = ["", "", "1"]
             return data
-        res = ["", "", None]
-    if Search == "":
+    elif Search == "":
         if data == []:
             print(123)
             if res[0] != "":
@@ -113,7 +120,7 @@ def get_input(input):
                                 [""]
                             ]]
                 data = [[[l[1:]], [l[1:]], [dir.replace("\\", "/")], ["b_folder"], ["~" + dir[16 + len(user):]], [user]]] + data
-                print(data)
+                print(data, "send folder ")
                 return data
     else:
         for dir, folder, files in os.walk(user_url):
