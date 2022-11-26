@@ -25,7 +25,7 @@ async function render() {
     const res = await eel.get_input(list)()
 
     if (res[0][2] > 0) {
-        workspacePath.innerHTML = '~/'
+        workspacePath.innerHTML = '~/*'
     }
     else {
         workspacePath.innerHTML = res[0][2].toString().replace('web/users/', '~/').replace('files/', '').replace('/files', '')

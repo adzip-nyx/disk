@@ -38,22 +38,8 @@
     </main>
     <aside class="sidebar">
         <button class="sidebar__create">Создать</button>
-        <ul class="workspaces">
-            <li class="workspaces__item workspaces__item-active">
-                <img class="workspaces__item--icon workspaces__item--icon-active" src="/icons/sidebar/homeFill.svg" alt="Мой диск">
-                <p class="workspaces__item--title workspaces__item--title-active">Мой диск</p>
-                <button class="workspaces__item--btn workspaces__item--btn-active" onclick="toolChange('disk')"></button>
-            </li>
-            <li class="workspaces__item">
-                <img class="workspaces__item--icon" src="/icons/sidebar/recent.svg" alt="Недавние">
-                <p class="workspaces__item--title">Недавние</p>
-                <button class="workspaces__item--btn" onclick="toolChange('recent')"></button>
-            </li>
-            <li class="workspaces__item">
-                <img class="workspaces__item--icon" src="/icons/sidebar/star.svg" alt="Избранное">
-                <p class="workspaces__item--title">Избранное</p>
-                <button class="workspaces__item--btn" onclick="toolChange('fav')"></button>
-            </li>
+        <ul class="workspaces" id="workspaces">
+
         </ul>
         <div class="sidebar__capacity" id="capacity">
 
@@ -62,5 +48,6 @@
     <script src="app.js"></script>
     <script src="scripts/user.js"></script>
     <script src="scripts/capacity.js"></script>
+    <script src="scripts/workspace.js"></script>
 </body>
 </html>

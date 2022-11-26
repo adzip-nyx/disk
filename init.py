@@ -13,12 +13,19 @@ for dir, folder, files in os.walk(user_url):
 print(usize)
 
 @eel.expose
-def get_capacity():
+def get_curworkspace():
+    workspace = [{
+        "currentWorkspace": "disk",
+    }]
 
+    return workspace
+
+@eel.expose
+def get_capacity():
     disk = [{
-        "diskUsed": "2147483647",
         "diskCapacity": "21474836479",
-        "diskPercent": "80" # процент этих чисел
+        "diskSystem": "2147483647",
+        "diskUser": "147483647"
     }]
 
     return disk

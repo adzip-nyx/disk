@@ -382,16 +382,26 @@ button {
 }
 
 .sidebar__capacity--bar {
+    position: relative;
     height: 8px;
     border-radius: 4px;
-    background-color: var(--second-color);
+    background-color: var(--windows-bg);
 }
 
-.sidebar__capacity--bar-loading {
-    z-index: 1;
+.sidebar__capacity--bar-system {
+    position: absolute;
+    z-index: 2;
     height: 8px;
     border-radius: 4px;
     background-color: var(--main-color);
+}
+
+.sidebar__capacity--bar-user {
+    position: absolute;
+    z-index: 1;
+    height: 8px;
+    border-radius: 4px;
+    background-color: var(--second-color);
 }
 
 .sidebar__capacity--space {
