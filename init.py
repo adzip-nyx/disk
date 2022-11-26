@@ -10,7 +10,18 @@ name, data, back, usize= [], [], "", 0
 for dir, folder, files in os.walk(user_url):
     for d in range(len(files)):
         usize += os.path.getsize(dir + "\\" + files[d])
-        print(usize)
+print(usize)
+
+@eel.expose
+def get_capacity():
+
+    disk = [{
+        "diskUsed": "2147483647",
+        "diskCapacity": "21474836479",
+        "diskPercent": "80" # процент этих чисел
+    }]
+
+    return disk
 
 @eel.expose
 def get_username():
@@ -18,24 +29,18 @@ def get_username():
     for dir,folder,files in os.walk("web\\users"):
         if dir == "web\\users":
             name += [[user]] + [folder]
-        print(name)
     return name
 
 @eel.expose
 def get_input(input):
     global res, user_url, types, user_folder, l, data, back
-    res = input
-    if res == "": 
-        res = ["", "", None]
-    print(data, "/n", back, res[2])
-    print(111)
-    print(res[2])
-    if data == back and res[2] == "1":
-        print(12222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222)
-        res = ["", "", None]
+    if data == back:
         return data
     else:
         data = []
+    res = input
+    if res == "":
+        res = ["", "", None]
     Search = res[1]
     if res[2] != None:
         if res[2] == "disk":
@@ -69,12 +74,10 @@ def get_input(input):
                                 [""]
                             ]]
             back = data
-            print(back, 1222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222)
-            print(data, "send fav ")
-            print(res)
-            res = ["", "", "1"]
+            print(data)
             return data
-    elif Search == "":
+        res = ["", "", None]
+    if Search == "":
         if data == []:
             print(123)
             if res[0] != "":
@@ -125,7 +128,7 @@ def get_input(input):
                                 [""]
                             ]]
                 data = [[[l[1:]], [l[1:]], [dir.replace("\\", "/")], ["b_folder"], ["~" + dir[16 + len(user):]], [user]]] + data
-                print(data, "send folder ")
+                print(data)
                 return data
     else:
         for dir, folder, files in os.walk(user_url):

@@ -5,33 +5,37 @@ async function users() {
 
     const userPic = '/users/' + userName[0] + '/.userpic'
 
-    let menu = ''
+    let list = ''
+
+    headerUser.innerHTML = `
+        <img class="header__userpic--img" src="${userPic}" alt="Userpic">
+        <button class="header__userpic--btn" onclick="userListToggle()"></button>
+    `
 
     userName[1].forEach(element => {
         if (element != userName[0]) {
-            menu += `
-            <li class="menu__item">
-                <button class="menu__item--user" onclick="gotoUser(${element})">
-                    <p class="menu__item--user-name">${element}</p>
-                    <img class="menu__item--user-pic" src="${'/users/' + element + '/.userpic'}" alt="${element}">
-                </button>
+            list += `
+            <li class="users-list__item">
+                <img class="users-list__item--img" src="${'/users/' + element + '/.userpic'}" alt="${element}" alt="${element}">
+                <p class="users-list__item--title">${element}</p>
+                <button class="users-list__item--btn" onclick="gotoUser(${element})"></button>
             </li>
         `
         }
     })
 
-    userChange.innerHTML = `
-        <button class="user__pic" onclick="userMenuToggle()">
-            <p class="user__pic-name">${userName[0]}</p>
-            <img class="user__pic-img" src="${userPic != undefined ? userPic : '/icons/users/default-user.svg'}" alt="${userName[0]}">
-        </button>
-        <ul class="menu menu--hidden" id="userMenu">${menu}</ul>
+    userList.innerHTML = `
+        <div class="users__current">
+            <img class="users__users__current--img" src="${userPic}" alt="${userName[0]}">
+            <p class="users__users__current--title">Solin</p>
+        </div>
+        <ul class="users-list" id="userList">${list}</ul>
     `
 }
 
 
-function userMenuToggle() {
-    userMenu.classList.toggle('menu--hidden')
+function userListToggle() {
+    userList.classList.toggle('hidden')
 }
 
 async function gotoUser(user) {

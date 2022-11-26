@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head class="page">
+<html lang="ru" class="page">
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/styles.css">
 
     <script src="eel.js"></script>
 
@@ -17,48 +17,50 @@
     <title>ADZIP NYX — Disk</title>
 </head>
 <body class="page__body">
-    <div class="wrapper">
-        <div class="main">
-            <header class="header">
-                <nav class="header__nav">
-                    <div class="search__bar">
-                        <input class="search__bar--input" placeholder="Поиск файлов" type="text" id="searchBar">
-                        <svg class="search__bar--icon" viewBox="0 0 48 48" height="48"><path d="M39.8 41.95 26.65 28.8q-1.5 1.3-3.5 2.025-2 .725-4.25.725-5.4 0-9.15-3.75T6 18.75q0-5.3 3.75-9.05 3.75-3.75 9.1-3.75 5.3 0 9.025 3.75 3.725 3.75 3.725 9.05 0 2.15-.7 4.15-.7 2-2.1 3.75L42 39.75Zm-20.95-13.4q4.05 0 6.9-2.875Q28.6 22.8 28.6 18.75t-2.85-6.925Q22.9 8.95 18.85 8.95q-4.1 0-6.975 2.875T9 18.75q0 4.05 2.875 6.925t6.975 2.875Z"/></svg>
-                    </div>
-                    <div class="user" id="userChange"></div>
-                </nav>
-            </header>
-            <main>
-                <ol class="workspace" id="output"></ol>
-            </main>
+    <header class="header">
+        <div class="header__logo">
+            <h1 class="header__logo--title">ADZIP NYX</h1>
+            <p class="header__logo--subtitle">DISK</p>
         </div>
-        <aside class="sidebar">
-            <div class="logo">
-                <img class="logo__icon" src="icons/brand/logo.png" alt="logo">
-                <h1 class="logo__title">Disk</h1>
-            </div>
-            <nav>
-                <ul class="tools">
-                    <li class="tools__item tools__item-active">
-                        <svg class="tools__item--icon tools__item--icon-active" viewBox="0 0 48 48" height="48"><path d="M11.1 38.9h7.2V26.3h11.4v12.6h7.2V19.55L24 9.9l-12.9 9.65Zm-3.4 3.4V17.85L24 5.6l16.3 12.25V42.3H26.45V29.55h-4.9V42.3ZM24 24.35Z"/></svg>
-                        <p class="tools__item--title tools__item--title-active">Мой диск</p>
-                        <button class="tools__item--btn tools__item--btn-active" onclick="toolChange('disk')"></button>
-                    </li>
-                    <li class="tools__item">
-                        <svg class="tools__item--icon" viewBox="0 0 48 48" height="48"><path d="m31.2 33.7 2.45-2.45-7.85-7.9V13.4h-3.3v11.25ZM24 44.3q-4.15 0-7.875-1.6-3.725-1.6-6.475-4.35Q6.9 35.6 5.3 31.875 3.7 28.15 3.7 24t1.6-7.875Q6.9 12.4 9.65 9.65 12.4 6.9 16.125 5.3 19.85 3.7 24 3.7t7.875 1.6Q35.6 6.9 38.35 9.65q2.75 2.75 4.35 6.475Q44.3 19.85 44.3 24t-1.6 7.875q-1.6 3.725-4.35 6.475-2.75 2.75-6.45 4.35-3.7 1.6-7.9 1.6ZM24 24Zm0 16.9q6.95 0 11.925-4.95Q40.9 31 40.9 24q0-6.95-4.975-11.925Q30.95 7.1 24 7.1q-6.95 0-11.925 4.975Q7.1 17.05 7.1 24q0 7 4.975 11.95Q17.05 40.9 24 40.9Z"/></svg>
-                        <p class="tools__item--title">Недавние</p>
-                        <button class="tools__item--btn" onclick="toolChange('recent')"></button>
-                    </li>
-                    <li class="tools__item">
-                        <svg class="tools__item--icon" viewBox="0 0 48 48" height="48"><path d="m16.3 37.5 7.7-4.6 7.7 4.65-2.1-8.7L36.35 23l-8.9-.8L24 14l-3.45 8.15-8.9.8 6.75 5.85Zm-5.1 7.1 3.4-14.55-11.35-9.8L18.2 19 24 5.25 29.8 19l14.95 1.25-11.35 9.8 3.4 14.55L24 36.9ZM24 26.25Z"/></svg>
-                        <p class="tools__item--title">Отмечены</p>
-                        <button class="tools__item--btn" onclick="toolChange('fav')"></button>
-                    </li>
-                </ul>
-            </nav>
-        </aside>
-    </div>
+        <div class="header__searchbar">
+            <input class="header__searchbar--input" placeholder="Поиск файлов" type="text" id="searchBar">
+            <img class="header__searchbar--icon" src="/icons/header/search.svg" alt="Search">
+        </div>
+        <div class="header__userpic" id="headerUser"></div>
+        <div class="users hidden" id="userList">
+        </div>
+    </header>
+    <main class="workspace">
+        <p class="workspace__path" id="workspacePath"></p>
+        <ul class="file" id="output">
+
+        </ul>
+    </main>
+    <aside class="sidebar">
+        <button class="sidebar__create">Создать</button>
+        <ul class="workspaces">
+            <li class="workspaces__item workspaces__item-active">
+                <img class="workspaces__item--icon workspaces__item--icon-active" src="/icons/sidebar/homeFill.svg" alt="Мой диск">
+                <p class="workspaces__item--title workspaces__item--title-active">Мой диск</p>
+                <button class="workspaces__item--btn workspaces__item--btn-active" onclick="toolChange('disk')"></button>
+            </li>
+            <li class="workspaces__item">
+                <img class="workspaces__item--icon" src="/icons/sidebar/recent.svg" alt="Недавние">
+                <p class="workspaces__item--title">Недавние</p>
+                <button class="workspaces__item--btn" onclick="toolChange('recent')"></button>
+            </li>
+            <li class="workspaces__item">
+                <img class="workspaces__item--icon" src="/icons/sidebar/star.svg" alt="Избранное">
+                <p class="workspaces__item--title">Избранное</p>
+                <button class="workspaces__item--btn" onclick="toolChange('fav')"></button>
+            </li>
+        </ul>
+        <div class="sidebar__capacity" id="capacity">
+
+        </div>
+    </aside>
     <script src="app.js"></script>
     <script src="scripts/user.js"></script>
+    <script src="scripts/capacity.js"></script>
 </body>
 </html>

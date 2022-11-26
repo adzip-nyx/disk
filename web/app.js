@@ -24,57 +24,53 @@ async function render() {
 
     const res = await eel.get_input(list)()
 
+    if (res[0][2] > 0) {
+        workspacePath.innerHTML = '~/'
+    }
+    else {
+        workspacePath.innerHTML = res[0][2].toString().replace('web/users/', '~/').replace('files/', '').replace('/files', '')
+    }
+
+    console.log(res[0][2]);
     res.forEach(element => {
-        let title, size, fileType, button, action = ''
+        let title, size, fileType, content = ''
 
-        element[3] == 'b_folder' ? fileType = '/icons/b_folder.svg' : ''
-        element[3] == "folder" ? fileType = '/icons/folder.svg' : ''
-        element[3] == "file" ? fileType = '/icons/file.svg' : ''
+        element[3] == 'b_folder' ? fileType = '/icons/files/back.svg' : ''
+        element[3] == "folder" ? fileType = '/icons/files/folder.svg' : ''
+        element[3] == "file" ? fileType = '/icons/files/file.svg' : ''
 
-        element[3] == "image" ? fileType = element[0] : ''
-        element[3] == "video" ? fileType = '/icons/video.svg' : ''
-        element[3] == "audio" ? fileType = '/icons/music.svg' : ''
+        element[3] == "image" ? fileType = '/icons/files/image.svg' : ''
+        element[3] == "video" ? fileType = '/icons/files/video.svg' : ''
+        element[3] == "audio" ? fileType = '/icons/files/music.svg' : ''
 
         element[3] == 'b_folder' ? title = element[4] : title = element[1]
         size = element[3] == "folder" ? element[2] + " элемент-а(ов)" : formatSizeUnits(element[2])
         element[3] == "b_folder" ? size = "Вернутся" : size
 
         if (element[3] == 'b_folder' || element[3] == 'folder') {
-            button = `
-                <button class="bar__file--btn" type="button" onclick="go('${element[1]}', '${element[2]}' ,'${element[3]}')">
-                    <img class="bar__file--btn-pic" src="${element[3] == "folder" ? "/icons/folder.svg" : fileType}"/>
-                </button>
-            `
-
-            action = `
-            <div class="bar__file--action">
-                <p class="bar__file--action-size">${size}</p>
-            </div>
+            content = `
+                <li class="file__item">
+                    <img class="file__item--icon" src="${fileType}" alt="${element[1]}">
+                    <p class="file__item--title">${title}</p>
+                    <p class="file__item--size">${size}</p>
+                    <button class="file__item--btn" onclick="go('${element[1]}', '${element[2]}' ,'${element[3]}')"></button>
+                </li>
             `
         }
         else {
-            button = `
-            <a href="${element[0]}" target="_blank">
-                <button class="bar__file--btn">
-                    <img class="bar__file--btn-pic" src="${element[3] == "folder" ? "/icons/folder.svg" : fileType}"/>
-                </button>
-            </a>
-            `
-            action = `
-            <div class="bar__file--action">
-                <p class="bar__file--action-size">${size}</p>
-                <a class="bar__file--action-download" href="${element[0]}" download="${element[1]}"><svg height="30" width="30" viewBox="0 0 20 20"><path d="M5.5 16q-.625 0-1.062-.438Q4 15.125 4 14.5V13h1.5v1.5h9V13H16v1.5q0 .625-.438 1.062Q15.125 16 14.5 16Zm4.5-3L6 9l1.062-1.062 2.188 2.187V3h1.5v7.125l2.188-2.187L14 9Z"/></svg></a>
-            </div>
+            content = `
+                <li class="file__item">
+                    <img class="file__item--icon" src="${fileType}" alt="${element[1]}">
+                    <p class="file__item--title">${title}</p>
+                    <p class="file__item--size">${size}</p>
+                    <button class="file__item--btn"></button>
+                </li>
             `
         }
 
         if (element[1] != "" && element[4] != '~') {
             output.innerHTML += `
-            <li class="bar">
-                ${button}
-                <p class="bar__file--title">${title}</p>
-                ${action}
-            </li>
+                ${content}
             `
         }
     })
