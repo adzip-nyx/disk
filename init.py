@@ -73,7 +73,7 @@ def get_input(input):
                 if l[:1] == "-":
                     user_folder = user_folder[:-(len("\\" + res[0][1:]))]
                     res[0] = ''
-                if l[:1] == "!":
+                if l[:1] == "*":
                     fav = open(user_url[:-5] + ".fav", "r+")
                     fav.write()
                     res[0] = ''
