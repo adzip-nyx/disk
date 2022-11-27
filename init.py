@@ -48,6 +48,7 @@ def get_username():
 @eel.expose
 def get_input(input):
     global res, user_url, types, user_folder, l, data, back
+    print(res)
     if data == back:
         return data
     else:
@@ -56,6 +57,7 @@ def get_input(input):
     if res == "":
         res = ["", "", None]
     Search = res[1]
+    print(res[2])
     if res[2] != None:
         if res[2] == "disk":
             user_folder = user_url
