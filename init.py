@@ -1,4 +1,5 @@
-import eel, os, os.path, webbrowser
+import eel, os, os.path, webbrowser, psutil 
+
 user = open("web\\.username", "r+")
 user = user.read()
 res, l = ["","", None], ""
@@ -6,11 +7,6 @@ user_url = "web\\users\\" + user + "\\files"
 user_folder = user_url
 types = [[".png", ".jpg", ".jpeg",".bmp", ".ico", ".webp"],[".mkv", ".mp4", ".mov",".avi", ".webm"], [".mp3", ".aac", ".wav", ".flac", "alac", "dsd", "ogg", "flac"]]
 name, data, back, usize= [], [], "", 0
-
-for dir, folder, files in os.walk(user_url):
-    for d in range(len(files)):
-        usize += os.path.getsize(dir + "\\" + files[d])
-print(usize)
 
 @eel.expose
 def get_curworkspace():
@@ -26,10 +22,18 @@ def changeworkspace(workspace):
 
 @eel.expose
 def get_capacity():
+    global user_url, usize
+    sd = []
+    DISK = "C:" 
+    free = psutil.disk_usage(DISK)
+    sd += [free.total, free.free]
+    for dir, folder, files in os.walk(user_url):
+        for d in range(len(files)):
+            usize += os.path.getsize(dir + "\\" + files[d])
     disk = [{
-        "diskCapacity": "21474836479", # объем всего диска
-        "diskSystem": "2147483647", # объем занятого пространства на диске
-        "diskUser": "147483647" # объем файлов пользователя
+        "diskCapacity": sd[1], # объем всего диска
+        "diskSystem": sd[0], # объем занятого пространства на диске
+        "diskUser": usize # объем файлов пользователя
     }]
 
     return disk
