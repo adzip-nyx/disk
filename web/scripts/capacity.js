@@ -8,14 +8,14 @@ async function renderCapacityBar() {
 
 function renderCapacity(diskCapacity, diskSystem, diskUser) {
 
-    let a = 60
-    let b = 80
+    let a = (diskSystem - diskCapacity) * 100 / diskSystem
+    let b = ((diskSystem - diskCapacity) + diskUser) * 100 / diskSystem
 
     capacity.innerHTML = `
         <div class="sidebar__capacity--bar">
             <div class="sidebar__capacity--bar-system" style="width:${a}%"></div>
             <div class="sidebar__capacity--bar-user" style="width:${b}%"></div>
         </div>
-        <p class="sidebar__capacity--space">${formatSizeUnits(diskSystem)} / ${formatSizeUnits(diskCapacity)}</p>
+        <p class="sidebar__capacity--space">${formatSizeUnits(diskSystem - diskCapacity)} / ${formatSizeUnits(diskSystem)}</p>
     `
 }
