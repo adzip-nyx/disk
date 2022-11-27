@@ -11,6 +11,8 @@ function renderCapacity(diskCapacity, diskSystem, diskUser) {
     let a = (diskSystem - diskCapacity) * 100 / diskSystem
     let b = ((diskSystem - diskCapacity) + diskUser) * 100 / diskSystem
 
+    console.log(diskUser);
+
     capacity.innerHTML = `
         <div class="sidebar__capacity--bar">
             <div class="sidebar__capacity--bar-system" style="width:${a}%"></div>
