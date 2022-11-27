@@ -13,12 +13,84 @@ def get_curworkspace():
     workspace = [{
         "currentWorkspace": "disk", # тут надо disk заменить на то что тыкнул, и поменять вкладку
     }]
-
     return workspace
 
 @eel.expose
 def changeworkspace(workspace):
-    return workspace # сюда присылаю вкладку по которой тыкнул
+    global user_folder, user_url, file_type
+    tool = workspace
+    workspace = []
+    if tool == "disk":
+        user_folder = user_url
+        for dir, folder, files in os.walk(user_url):
+            print(dir)
+            if dir == user_url:
+                for a in range(len(folder)):
+                    file_url = (dir + "/" + folder[a]).replace("\\", "/")
+                    workspace += [[
+                            [file_url[4:]],
+                            [folder[a]],
+                            [len(os.listdir(dir + "\\" + folder[a]))],
+                            ["folder"],
+                            [""]
+                        ]]
+                for i in range(len(files)):
+                    file_type = ""
+                    for g in types[0]:
+                        if files[i][files[i].rfind("."):] == g:
+                            file_type = "image"
+                            break
+                    for g in types[1]:
+                        if files[i][files[i].rfind("."):] == g:
+                            file_type = "video"
+                            break
+                    for g in types[2]:
+                        if files[i][files[i].rfind("."):] == g:
+                            file_type = "audio"
+                            break
+                    if file_type == "":
+                        file_type = "file"
+                    file_url = (dir + "/" + files[i]).replace("\\", "/")
+                    workspace += [[
+                            [file_url[4:]],
+                            [files[i]],
+                            [os.path.getsize(dir + "\\" + files[i])],
+                            [file_type],
+                            [""]
+                        ]]
+        print(workspace)
+        return workspace
+    """elif res[2] == "fav":
+        fav = open(user_url[:-5] + ".fav", "r+")
+        fav_files = fav.readlines()
+        for fav_file in fav_files:
+            dir_fav = fav_file[:(fav_file.find("||"))]
+            name_fav = fav_file[(fav_file.find("||")+2):]
+            file_url = (dir_fav).replace("\\", "/")
+            for g in types[0]:
+                if name_fav[name_fav.rfind("."):] == g:
+                    file_type = "image"
+                    break
+            for g in types[1]:
+                if name_fav[name_fav.rfind("."):] == g:
+                    file_type = "video"
+                    break
+            for g in types[2]:
+                if name_fav[name_fav.rfind("."):] == g:
+                    file_type = "audio"
+                    break
+            if file_type == "":
+                file_type = "file"
+            workspace += [[
+                            [file_url[4:]],
+                            [name_fav],
+                            [os.path.getsize(dir_fav)],
+                            [file_type],
+                            [""]
+                        ]]
+        print(workspace)
+    res = ["", "", None]"""
+    return workspace
 
 @eel.expose
 def get_capacity():
@@ -48,51 +120,11 @@ def get_username():
 @eel.expose
 def get_input(input):
     global res, user_url, types, user_folder, l, data, back
-    print(res)
-    if data == back:
-        return data
-    else:
-        data = []
+    data = []
     res = input
     if res == "":
-        res = ["", "", None]
+        res = ["", ""]
     Search = res[1]
-    print(res[2])
-    if res[2] != None:
-        if res[2] == "disk":
-            user_folder = user_url
-        elif res[2] == "fav":
-            fav = open(user_url[:-5] + ".fav", "r+")
-            fav_files = fav.readlines()
-            for fav_file in fav_files:
-                dir_fav = fav_file[:(fav_file.find("||"))]
-                name_fav = fav_file[(fav_file.find("||")+2):]
-                file_url = (dir_fav).replace("\\", "/")
-                for g in types[0]:
-                    if name_fav[name_fav.rfind("."):] == g:
-                        file_type = "image"
-                        break
-                for g in types[1]:
-                    if name_fav[name_fav.rfind("."):] == g:
-                        file_type = "video"
-                        break
-                for g in types[2]:
-                    if name_fav[name_fav.rfind("."):] == g:
-                        file_type = "audio"
-                        break
-                if file_type == "":
-                    file_type = "file"
-                data += [[
-                                [file_url[4:]],
-                                [name_fav],
-                                [os.path.getsize(dir_fav)],
-                                [file_type],
-                                [""]
-                            ]]
-            back = data
-            print(data)
-            return data
-        res = ["", "", None]
     if Search == "":
         if data == []:
             print(123)
