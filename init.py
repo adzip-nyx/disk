@@ -24,7 +24,7 @@ def changeworkspace(workspace):
 def get_capacity():
     global user_url, usize
     sd = []
-    DISK = "C:" 
+    DISK = "C:"
     free = psutil.disk_usage(DISK)
     sd += [free.total, free.free]
     for dir, folder, files in os.walk(user_url):
@@ -35,7 +35,6 @@ def get_capacity():
         "diskSystem": sd[0], # объем занятого пространства на диске
         "diskUser": usize # объем файлов пользователя
     }]
-
     return disk
 
 @eel.expose
