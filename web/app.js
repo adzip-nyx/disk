@@ -31,7 +31,6 @@ async function render() {
         workspacePath.innerHTML = res[0][2].toString().replace('web/users/', '~/').replace('files/', '').replace('/files', '')
     }
 
-    console.log(res[0][2]);
     res.forEach(element => {
         let title, size, fileType, content = ''
 
@@ -83,7 +82,7 @@ function go(name, folder, type) {
     type == 'b_folder' ? push(nameBack, type) : push(nameCur, type)
 }
 
-async function push(name, type, tool) {
+async function push(name, type) {
     name == '' ? name = '\\' : name
     const out = searchBar.value
     let outName = ''
@@ -92,17 +91,12 @@ async function push(name, type, tool) {
 
     const list = [
         outName,
-        out,
-        tool
+        out
     ]
 
     const res = await eel.get_input(list)()
 
     render()
-}
-
-async function toolChange(tool) {
-    push('', '', tool)
 }
 
 function formatSizeUnits(bytes){

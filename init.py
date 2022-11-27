@@ -15,17 +15,21 @@ print(usize)
 @eel.expose
 def get_curworkspace():
     workspace = [{
-        "currentWorkspace": "disk",
+        "currentWorkspace": "disk", # тут надо disk заменить на то что тыкнул, и поменять вкладку
     }]
 
     return workspace
 
 @eel.expose
+def changeworkspace(workspace):
+    return workspace # сюда присылаю вкладку по которой тыкнул
+
+@eel.expose
 def get_capacity():
     disk = [{
-        "diskCapacity": "21474836479",
-        "diskSystem": "2147483647",
-        "diskUser": "147483647"
+        "diskCapacity": "21474836479", # объем всего диска
+        "diskSystem": "2147483647", # объем занятого пространства на диске
+        "diskUser": "147483647" # объем файлов пользователя
     }]
 
     return disk
