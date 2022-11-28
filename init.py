@@ -2,65 +2,27 @@ import eel, os, os.path, webbrowser, psutil
 
 user = open("web\\.username", "r+")
 user = user.read()
-res, l = ["","", None], ""
+res, l = ["",""], ""
 user_url = "web\\users\\" + user + "\\files"
 user_folder = user_url
 types = [[".png", ".jpg", ".jpeg",".bmp", ".ico", ".webp"],[".mkv", ".mp4", ".mov",".avi", ".webm"], [".mp3", ".aac", ".wav", ".flac", "alac", "dsd", "ogg", "flac"]]
-name, data, back, usize= [], [], "", 0
+name, data, back, usize= [], [], [], 0
 
 @eel.expose
 def get_curworkspace():
     workspace = [{
         "currentWorkspace": "disk", # тут надо disk заменить на то что тыкнул, и поменять вкладку
     }]
+
     return workspace
 
 @eel.expose
 def changeworkspace(workspace):
-    global user_folder, user_url, file_type
     tool = workspace
-    workspace = []
+    print(4)
     if tool == "disk":
         user_folder = user_url
-        for dir, folder, files in os.walk(user_url):
-            print(dir)
-            if dir == user_url:
-                for a in range(len(folder)):
-                    file_url = (dir + "/" + folder[a]).replace("\\", "/")
-                    workspace += [[
-                            [file_url[4:]],
-                            [folder[a]],
-                            [len(os.listdir(dir + "\\" + folder[a]))],
-                            ["folder"],
-                            [""]
-                        ]]
-                for i in range(len(files)):
-                    file_type = ""
-                    for g in types[0]:
-                        if files[i][files[i].rfind("."):] == g:
-                            file_type = "image"
-                            break
-                    for g in types[1]:
-                        if files[i][files[i].rfind("."):] == g:
-                            file_type = "video"
-                            break
-                    for g in types[2]:
-                        if files[i][files[i].rfind("."):] == g:
-                            file_type = "audio"
-                            break
-                    if file_type == "":
-                        file_type = "file"
-                    file_url = (dir + "/" + files[i]).replace("\\", "/")
-                    workspace += [[
-                            [file_url[4:]],
-                            [files[i]],
-                            [os.path.getsize(dir + "\\" + files[i])],
-                            [file_type],
-                            [""]
-                        ]]
-        print(workspace)
-        return workspace
-    """elif res[2] == "fav":
+    elif tool == "fav":
         fav = open(user_url[:-5] + ".fav", "r+")
         fav_files = fav.readlines()
         for fav_file in fav_files:
@@ -81,20 +43,22 @@ def changeworkspace(workspace):
                     break
             if file_type == "":
                 file_type = "file"
-            workspace += [[
+            data += [[
                             [file_url[4:]],
                             [name_fav],
                             [os.path.getsize(dir_fav)],
                             [file_type],
                             [""]
                         ]]
-        print(workspace)
-    res = ["", "", None]"""
-    return workspace
+        back = data
+        
+    print(user_folder)
+    return workspace # сюда присылаю вкладку по которой тыкнул
 
 @eel.expose
 def get_capacity():
     global user_url, usize
+    print(3)
     sd = []
     DISK = "C:"
     free = psutil.disk_usage(DISK)
@@ -112,6 +76,7 @@ def get_capacity():
 @eel.expose
 def get_username():
     global name
+    print(2)
     for dir,folder,files in os.walk("web\\users"):
         if dir == "web\\users":
             name += [[user]] + [folder]
@@ -120,7 +85,12 @@ def get_username():
 @eel.expose
 def get_input(input):
     global res, user_url, types, user_folder, l, data, back
+    print(1)
     data = []
+    print(back)
+    if back != []:
+        return back
+    print(11)
     res = input
     if res == "":
         res = ["", ""]
