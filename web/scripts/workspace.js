@@ -1,5 +1,3 @@
-renderWorkspaces()
-
 async function renderWorkspaces() {
     let res = await eel.get_curworkspace()()
 
