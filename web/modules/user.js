@@ -1,6 +1,4 @@
-users()
-
-async function users() {
+async function renderUsers() {
     const userName = await eel.get_username()()
 
     const userPic = '/users/' + userName[0] + '/.userpic'
@@ -27,7 +25,7 @@ async function users() {
     userList.innerHTML = `
         <div class="users__current">
             <img class="users__users__current--img" src="${userPic}" alt="${userName[0]}">
-            <p class="users__users__current--title">Solin</p>
+            <p class="users__users__current--title">${userName[0]}</p>
         </div>
         <ul class="users-list" id="userList">${list}</ul>
     `

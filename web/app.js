@@ -1,4 +1,7 @@
 render()
+renderCapacityBar()
+renderWorkspaces()
+renderUsers()
 
 searchBar = document.getElementById('searchBar')
 
@@ -62,7 +65,7 @@ async function render() {
                     <img class="file__item--icon" src="${fileType}" alt="${element[1]}">
                     <p class="file__item--title">${title}</p>
                     <p class="file__item--size">${size}</p>
-                    <button class="file__item--btn"></button>
+                    <button class="file__item--btn" onclick="preview('${element[0]}', '${element[1]}', '${element[3]}')"></button>
                 </li>
             `
         }

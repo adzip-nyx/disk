@@ -1,4 +1,4 @@
-import eel, os, os.path, webbrowser, psutil 
+import eel, os, os.path, webbrowser, psutil
 
 user = open("web\\.username", "r+")
 user = user.read()
@@ -71,6 +71,7 @@ def get_capacity():
         "diskSystem": sd[0], # объем занятого пространства на диске
         "diskUser": usize # объем файлов пользователя
     }]
+    usize = 0
     return disk
 
 @eel.expose
