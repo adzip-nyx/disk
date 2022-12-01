@@ -1,4 +1,6 @@
-import eel, os, os.path, webbrowser, psutil
+import eel, os, os.path, webbrowser
+from get_capacity import *
+from Search import *
 
 user = open("web\\.username", "r+")
 user = user.read()
@@ -6,7 +8,7 @@ res, l = ["",""], ""
 user_url = "web\\users\\" + user + "\\files"
 user_folder = user_url
 types = [[".png", ".jpg", ".jpeg",".bmp", ".ico", ".webp"],[".mkv", ".mp4", ".mov",".avi", ".webm"], [".mp3", ".aac", ".wav", ".flac", "alac", "dsd", "ogg", "flac"]]
-name, data, back, usize= [], [], [], 0
+name, data, back= [], [], []
 
 @eel.expose
 def get_curworkspace():
@@ -57,27 +59,14 @@ def changeworkspace(workspace):
 
 @eel.expose
 def get_capacity():
-    global user_url, usize
-    print(3)
-    sd = []
-    DISK = "C:"
-    free = psutil.disk_usage(DISK)
-    sd += [free.total, free.free]
-    for dir, folder, files in os.walk(user_url):
-        for d in range(len(files)):
-            usize += os.path.getsize(dir + "\\" + files[d])
-    disk = [{
-        "diskCapacity": sd[1], # объем всего диска
-        "diskSystem": sd[0], # объем занятого пространства на диске
-        "diskUser": usize # объем файлов пользователя
-    }]
-    usize = 0
-    return disk
+    global user_url
+    reg = total_1(user_url)
+    return reg
+    
 
 @eel.expose
 def get_username():
     global name
-    print(2)
     for dir,folder,files in os.walk("web\\users"):
         if dir == "web\\users":
             name += [[user]] + [folder]
@@ -147,38 +136,10 @@ def get_input(input):
                                 [""]
                             ]]
                 data = [[[l[1:]], [l[1:]], [dir.replace("\\", "/")], ["b_folder"], ["~" + dir[16 + len(user):]], [user]]] + data
-                print(data)
                 return data
     else:
-        for dir, folder, files in os.walk(user_url):
-            for i in range (len(files)):
-                file_type = ""
-                document = files[i].lower()
-                c = document.find(Search)
-                if c != -1:
-                    for g in types[0]:
-                        if files[i][files[i].rfind("."):] == g:
-                            file_type = "image"
-                            break
-                    for g in types[1]:
-                        if files[i][files[i].rfind("."):] == g:
-                            file_type = "video"
-                            break
-                    for g in types[2]:
-                        if files[i][files[i].rfind("."):] == g:
-                            file_type = "audio"
-                            break
-                    if file_type == "":
-                        file_type = "file"
-                    file_url = (dir + "/" + files[i]).replace("\\", "/")
-                    data += [[
-                        [file_url[4:]],
-                        [files[i]],
-                        [os.path.getsize(dir + "\\" + files[i])],
-                        [file_type],
-                        [""]
-                    ]]
-        Search = ""
+        input_user = [user_url, Search]
+        data = Searching(input_user)
         return data
 
 eel.init("web")
