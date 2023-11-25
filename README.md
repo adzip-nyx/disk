@@ -11,6 +11,7 @@ https://www.python.org/downloads/
 
 ```
 pip install eel
+pip install psutil
 
 python init.py
 ```
