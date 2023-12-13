@@ -1,4 +1,4 @@
-import eel, os, os.path, webbrowser
+import eel, os, os.path
 from get_capacity import *
 from Search import *
 
@@ -9,6 +9,13 @@ user_url = "web\\users\\" + user + "\\files"
 user_folder = user_url
 types = [[".png", ".jpg", ".jpeg",".bmp", ".ico", ".webp"],[".mkv", ".mp4", ".mov",".avi", ".webm"], [".mp3", ".aac", ".wav", ".flac", "alac", "dsd", "ogg", "flac"]]
 name, data, back= [], [], []
+
+eel.init('web') 
+
+@eel.expose
+def get_currentUser(user):
+    with open('./web/.username', "w") as file:
+        file.write(user)
 
 @eel.expose
 def get_curworkspace():
@@ -142,5 +149,6 @@ def get_input(input):
         data = Searching(input_user)
         return data
 
-eel.init("web")
-eel.start("index.html", mode= webbrowser.get('windows-default'))
+eel.browsers.set_path('electron', './node_modules/electron/dist/electron')
+
+eel.start('index.html', mode='electron' , port=8000  ,host='localhost',disable_cache=True, close_callback='close_callback', )

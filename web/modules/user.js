@@ -16,7 +16,7 @@ async function renderUsers() {
             <li class="users-list__item">
                 <img class="users-list__item--img" src="${'/users/' + element + '/.userpic'}" alt="${element}" alt="${element}">
                 <p class="users-list__item--title">${element}</p>
-                <button class="users-list__item--btn" onclick="gotoUser(${element})"></button>
+                <button class="users-list__item--btn" onclick="gotoUser('${element}')"></button>
             </li>
         `
         }
@@ -33,14 +33,10 @@ async function renderUsers() {
 
 
 function userListToggle() {
-    userList.classList.toggle('hidden')
+    document.getElementById('userList').classList.toggle('hidden')
 }
 
 async function gotoUser(user) {
-
-    const list = [
-        user
-    ]
-
-    res = await eel.get_username(list)()
+    const userTemp = user.toString()
+    res = await eel.get_currentUser(userTemp)()
 }
